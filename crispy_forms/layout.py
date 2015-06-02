@@ -204,7 +204,12 @@ class Submit(BaseInput):
     .. note:: The first argument is also slugified and turned into the id for the submit button.
     """
     input_type = 'submit'
-    field_classes = 'submit submitButton' if TEMPLATE_PACK == 'uni_form' else 'btn btn-primary'
+    if 'uni_form' in TEMPLATE_PACK:
+        field_classes = 'submit submitButton'
+    elif 'bootstrap' in TEMPLATE_PACK:
+        field_classes = 'btn btn-primary'
+    elif 'materializecss' in TEMPLATE_PACK:
+        field_classes = 'btn waves-effect waves-light'
 
 
 class Button(BaseInput):
