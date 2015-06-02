@@ -46,6 +46,11 @@ def is_file(field):
 
 
 @register.filter
+def is_textarea(field):
+    return isinstance(field.field.widget, forms.Textarea)
+
+
+@register.filter
 def classes(field):
     """
     Returns CSS classes of a field
