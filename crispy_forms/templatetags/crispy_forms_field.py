@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 try:
     from itertools import izip
 except ImportError:
@@ -111,11 +113,14 @@ class CrispyFieldNode(template.Node):
                 css_class = class_name
 
             if (
-                TEMPLATE_PACK == 'bootstrap3'
-                and not is_checkbox(field)
-                and not is_file(field)
+                TEMPLATE_PACK == 'bootstrap3' and
+                    not is_checkbox(field) and
+                    not is_file(field)
             ):
                 css_class += ' form-control'
+
+            if TEMPLATE_PACK == 'materializecss' and is_textarea(field):
+                css_class += ' materialize-textarea'
 
             widget.attrs['class'] = css_class
 
